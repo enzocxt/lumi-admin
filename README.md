@@ -1,4 +1,4 @@
-# lumi-admin
+# Lumi-Admin-Front
 
 > A Vue.js project
 
