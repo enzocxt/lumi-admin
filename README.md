@@ -1,6 +1,8 @@
 # Lumi-Admin-Front
 
-> A Vue.js project
+> This is the front-end part of the Content Manage System project for website [Luminocity](http://luminocity.cn/).  
+> The back-end part comes [here](https://github.com/enzocxt/Lumi-Admin-Back).  
+> I try to learn web development skills by this project, although *Luminocity* does not need many of the functions.  
 
 ## Build Setup
 
