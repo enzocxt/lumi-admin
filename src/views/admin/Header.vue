@@ -1,7 +1,7 @@
 <template>
   <el-card class="admin-header">
     <a href="/index">
-      <img src="../../assets/img/icon/icon2.png" alt="" width="55px" style="float: left;margin-top: -5px;">
+      <img src="../../assets/img/icon/logo.png" alt="" width="55px" style="float: left;margin-top: -5px;">
     </a>
     <span style="font-size: 24px;font-weight: bold;position:absolute;left: 100px">Luminocity</span>
     <i class="el-icon-switch-button" v-on:click="logout" style="font-size: 32px;float: right"></i>
@@ -20,7 +20,7 @@ export default {
         if (resp.data.code === 200) {
           _this.$store.commit('logout')
           _this.$router.replace('/index')
-          // 清空路由，防止路由重复加载
+          // clear routes, prevent duplicate loading of routes
           const newRouter = createRouter()
           _this.$router.matcher = newRouter.matcher
         }

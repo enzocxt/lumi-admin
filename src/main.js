@@ -138,12 +138,13 @@ Vue.use(mavonEditor)
 
 router.beforeEach((to, from, next) => {
   if (store.state.user.username && to.path.startsWith('/admin')) {
+    console.log(store.state.user)
     initAdminMenu(router, store)
   }
   // 已登录状态下访问 login 页面直接跳转到后台首页
   if  (store.state.user.username && to.path.startsWith('/login')) {
     next({
-      path: 'Dashboard'
+      path: 'admin/dashboard'
     })
   }
   // 如果前端没有登录信息则直接拦截，如果有则判断后端是否正常登录（防止构造参数绕过）
@@ -191,10 +192,12 @@ router.beforeEach((to, from, next) => {
 const initAdminMenu = (router, store) => {
   // 如果 store 里有菜单数据，说明是正常跳转，无需重新加载
   if (store.state.adminMenus.length > 0) {
+    console.log(store.state.adminMenus)
     return
   }
   // 第一次进入或进行刷新时需要重新加载
   axios.get('/menu').then(resp => {
+    console.log('initAdminMenu:', resp)
     if (resp && resp.status === 200) {
       var fmtRoutes = formatRoutes(resp.data)
       // var fmtRoutes = formatRoutes(resp.data.result)

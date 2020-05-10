@@ -10,7 +10,7 @@
     <el-link href="/admin/content/editor" :underline="false" target="_blank" class="add-link">
       <el-button type="success">写文章</el-button>
     </el-link>
-    <el-card style="margin: 18px 2%;width: 95%">
+    <el-card style="margin: 18px 2%;width: 95%;height: 100%;">
       <el-table
         :data="articles"
         stripe
@@ -100,16 +100,20 @@ export default {
   methods: {
     loadArticles () {
       var _this = this
-      this.$axios.get('/article/' + this.pageSize + '/1').then(resp => {
+      this.$axios.get(`/article/${this.pageSize}/1`).then(resp => {
         if (resp && resp.status === 200) {
-          _this.articles = resp.data.content
+          // Becareful about the format of response
+          // the real data would be : resp.data.content or resp.data.result.content
+          // _this.articles = resp.data.content
+          _this.articles = resp.data.result.content
+          console.log(_this.articles)
           _this.total = resp.data.totalElements
         }
       })
     },
     handleCurrentChange (page) {
       var _this = this
-      this.$axios.get('/article/' + this.pageSize + '/' + page).then(resp => {
+      this.$axios.get(`/article/${this.pageSize}/${page}`).then(resp => {
         if (resp && resp.status === 200) {
           _this.articles = resp.data.content
           _this.total = resp.data.totalElements

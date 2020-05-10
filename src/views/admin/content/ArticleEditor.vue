@@ -22,8 +22,10 @@
         ref=md
         @save="saveArticles"
         fontSize="16px">
-        <button type="button" class="op-icon el-icon-document"
+        <button type="button" 
+          class="op-icon el-icon-document"
           :title="'摘要/封面'"
+          slot="left-toolbar-after"
           @click="dialogVisible=true"
         ></button>
       </mavon-editor>
@@ -72,7 +74,7 @@ export default {
   },
   methods: {
     saveArticles (value, render) {
-      // value 是 md，render 是 html
+      // value : md, render : html
       this.$confirm('是否保存并发布文章?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -88,6 +90,7 @@ export default {
               articleCover: this.article.articleCover,
               articleDate: this.article.articleDate
             }).then(resp => {
+            console.log(resp)
             if (resp && resp.status === 200) {
               this.$message({
                 type: 'info',
