@@ -5,7 +5,7 @@
         <div id="header-div">
           <div style="height: 150px"></div>
           <carousel></carousel>
-          <quick-nav style="float: right;margin-top: -450px;margin-right: 480px"></quick-nav>
+          <quick-nav style="float: right;margin-top: -450px;"></quick-nav>
         </div>
         <update-card id="update-card"></update-card>
         <slogan id="slogan"></slogan>
@@ -17,10 +17,10 @@
 <script>
 import Carousel from './Carousel'
 import QuickNav from './QuickNav'
-import Slogan from './Slogan'
-import About from '@/components/common/About'
 import UpdateCard from './UpdateCard'
 import SideMenu from './SideMenu'
+import Slogan from './Slogan'
+import About from '@/components/common/About'
 export default {
   name: 'AppIndex',
   components: {Carousel, QuickNav, Slogan, About, UpdateCard, SideMenu}

@@ -1,41 +1,37 @@
 <template>
   <el-card class="box-card">
     <div slot="header" class="clearfix">
-      <span style="font-weight: bold;font-size: 20px">最近更新</span>
+      <span style="font-weight: bold;font-size: 20px">公告</span>
       <!--<el-button style="float: right; padding: 3px 0" type="text">修改</el-button>-->
     </div>
     <div class="block">
       <el-timeline>
-        <!-- <el-timeline-item timestamp="2019/4/13" placement="top">
+        <el-timeline-item timestamp="2017/11/09" placement="top">
           <el-card>
-            <h4>实现上传至服务器和输入 URL 两种方式添加封面</h4>
-            <p>Evan 提交于 2019/4/13 21:32</p>
+            <h4>读书御寒双十一：光明城经典好书全场5折起，折后更享满减</h4>
+            <p>
+              <a href="https://www.douban.com/people/131903450/">晃膀子的</a>
+              提交于 2017-11-09 20:21:46
+            </p>
           </el-card>
         </el-timeline-item>
-        <el-timeline-item timestamp="2019/4/11" placement="top">
+        <el-timeline-item timestamp="2017/03/07" placement="top">
           <el-card>
-            <h4>实现图书分类功能</h4>
-            <p>Evan 提交于 2019/4/11 09:02</p>
+            <h4>招聘 | 千里路 · 万卷书 · 一座城</h4>
+            <p>
+              <a href="https://www.douban.com/people/131903450/">晃膀子的</a>
+              提交与 2017-03-07 09:03:05
+            </p>
           </el-card>
         </el-timeline-item>
-        <el-timeline-item timestamp="2019/4/8" placement="top">
+        <el-timeline-item timestamp="2015/07/01" placement="top">
           <el-card>
-            <h4>实现图书分页，修复图书添加的 BUG</h4>
-            <p>Evan 提交于 2019/4/8 22:10</p>
+            <h4>招聘 | 光明城期待您的加入</h4>
+            <p>
+              <a href="https://www.douban.com/people/46912750/">王琦瑶</a>
+              提交于 2015-07-01 15:24:27</p>
           </el-card>
         </el-timeline-item>
-        <el-timeline-item timestamp="2019/4/6" placement="top">
-          <el-card>
-            <h4>实现搜索框模糊查询</h4>
-            <p>Evan 提交于 2019/4/6 19:51</p>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2019/4/5" placement="top">
-          <el-card>
-            <h4>实现图书修改功能</h4>
-            <p>Evan 提交于 2019/4/5 22:52</p>
-          </el-card>
-        </el-timeline-item> -->
       </el-timeline>
     </div>
   </el-card>

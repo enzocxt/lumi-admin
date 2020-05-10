@@ -1,11 +1,12 @@
 <template>
   <div class="quick-nav">
-    <!-- <img src="../../assets/img/icon/icon2.png" alt="" class="monster"> -->
-    <a href="https://github.com/Antabot/White-Jotter/blob/master/README.md" target="_blank">
-      <!-- <img src="../../assets/img/icon/icon5.png" alt="" class="readme"> -->
-    </a>
-    <!-- <img src="../../assets/img/icon/icon7.png" alt="" class="spark"> -->
-    <img src="../../assets/img/icon/logo.png" alt="" class="logo">
+    <p>
+      光明城<br>
+      ——看见我们的未来
+      <br>
+      光明城，是同济大学出版社推出的城市、建筑、设计专业出版品牌，由群岛工作室（Studio Archipelago）负责策划及出版工作，以更新的出版理念、更敏锐的视角、更积极的态度，回应今天中国城市、建筑与设计领域的问题。
+    </p>
+    <!-- <img src="../../assets/img/icon/logo.png" alt="" class="logo"> -->
   </div>
 </template>
 
@@ -17,7 +18,8 @@ export default {
 
 <style scoped>
 .quick-nav {
-  width: 303px;
+  width: 100%;
+  /* width: 303px; */
   height: 318px;
   background-color: transparent;
 }
