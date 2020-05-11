@@ -58,14 +58,16 @@ export default {
           password: this.loginForm.password
         })
         .then(resp => {
-          console.log(resp)
+          // console.log("login response:\n", resp)
           if (resp.data.code === 200) {
             var data = resp.data.result
-            console.log(data)
+            // console.log("response data:\n", data)
             _this.$store.commit('login', data)
             var path = _this.$route.query.redirect
+            const newPath = path === '/' || path === undefined ? '/index' : path
+            // console.log("redirect path:\n", newPath)
             _this.$router.replace({
-              path: path === '/' || path === undefined ? '/index' : path
+              path: newPath
             })
           } else {
             this.$alert(resp.data.message, '提示', {
