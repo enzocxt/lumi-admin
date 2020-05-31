@@ -10,6 +10,7 @@ from flask import (
 )
 from flask_sqlalchemy import SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
+from flask_migrate import Migrate
 
 
 app = Flask(__name__)
@@ -25,6 +26,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] =\
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # db 对象时 SQLAlchemy 类的实例，表示应用使用的数据库
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+# 为了开放数据库迁移相关的命令，Flask-Migrate 添加了 flask db 命令和几个子命令
+# 在新项目中科院使用 init 子命令添加数据库迁移支持
+# $ flask db init
+# 创建 migrations 目录，所有迁移脚本都存放在这儿
+# 数据库迁移仓库中的文件要和应用的其他文件一起纳入版本控制
+#
+# 使用 Flask-Migrate 管理数据库模式变化的步骤：
+# 1. 对模型类做必要的修改
+# 2. 执行 flask db migrate 命令，自动创建一个迁移脚本
+# 3. 检查自动生成的脚本，根据对模型的实际改动进行调整
+# 4. 把迁移脚本纳入版本控制
+# 5. 执行 flask db upgrade 命令，把迁移应用到数据库中
 
 
 class User(db.Model):
@@ -35,6 +49,7 @@ class User(db.Model):
     # Flask-SQLAlchemy 要求每个模型都定义主键，这一列经常命名为 id
     # index 设为 True，为列创建索引，提升查询效率
     username = db.Column(db.String(64), unique=True, index=True)
+    password_hash = db.Column(db.String(128))
 
     def __repr__(self):
         return f'<User ({self.username})'
