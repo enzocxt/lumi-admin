@@ -58,22 +58,37 @@ export default {
           password: this.loginForm.password
         })
         .then(resp => {
-          // console.log("login response:\n", resp)
-          if (resp.data.code === 200) {
-            var data = resp.data.result
-            // console.log("response data:\n", data)
+          console.log("login response:\n", resp)
+          if (resp.status === 200) {
+            let data = resp.data
+            console.log("response data:\n", data)
             _this.$store.commit('login', data)
-            var path = _this.$route.query.redirect
+            let path = _this.$route.query.redirect
             const newPath = path === '/' || path === undefined ? '/index' : path
-            // console.log("redirect path:\n", newPath)
+            console.log("redirect path:\n", newPath)
             _this.$router.replace({
               path: newPath
             })
           } else {
-            this.$alert(resp.data.message, '提示', {
+            this.$alert(resp.message, '提示', {
               confirmButtonText: '确定'
             })
           }
+          // if (resp.data.code === 200) {
+          //   var data = resp.data.result
+          //   // console.log("response data:\n", data)
+          //   _this.$store.commit('login', data)
+          //   var path = _this.$route.query.redirect
+          //   const newPath = path === '/' || path === undefined ? '/index' : path
+          //   // console.log("redirect path:\n", newPath)
+          //   _this.$router.replace({
+          //     path: newPath
+          //   })
+          // } else {
+          //   this.$alert(resp.data.message, '提示', {
+          //     confirmButtonText: '确定'
+          //   })
+          // }
         })
         .catch(failResponse => {})
     }
