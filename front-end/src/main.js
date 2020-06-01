@@ -8,7 +8,7 @@ import store from './vuex'
 
 router.beforeEach((to, from, next) => {
   if (store.state.user.username && to.path.startsWith('/admin')) {
-    console.log(store.state.user)
+    console.log('to admin pages:\n', store.state.user)
     initAdminMenu(router, store)
   }
   // if already login, accessing login page is redirected to backend page
@@ -57,7 +57,6 @@ const initAdminMenu = (router, store) => {
     console.log('initAdminMenu:', resp)
     if (resp && resp.status === 200) {
       var fmtRoutes = formatRoutes(resp.data)
-      // var fmtRoutes = formatRoutes(resp.data.result)
       router.addRoutes(fmtRoutes)
       store.commit('initAdminMenu', fmtRoutes)
     }

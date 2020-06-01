@@ -60,7 +60,9 @@ export default{
           email: this.loginForm.email
         })
         .then(resp => {
-          if (resp.data.code === 200) {
+          console.log('response:\n', resp)
+          // if (resp.data.code === 200) {
+          if (resp.status === 200 || resp.status === 201) {
              this.$alert('注册成功', '提示', {
               confirmButtonText: '确定'
             })
