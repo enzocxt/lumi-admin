@@ -76,8 +76,8 @@ const formatRoutes = (routes) => {
         require([`./pages/admin/${route.component}.vue`], resolve)
       },
       name: route.name,
-      nameZh: route.nameZh,
-      iconCls: route.iconCls,
+      nameZh: route.name_zh, // route.nameZh,
+      iconCls: route.icon_cls, // route.iconCls,
       meta: {
         requireAuth: true
       },

@@ -3,9 +3,11 @@ from flask import (
     request,
     url_for,
     jsonify,
+    make_response,
 )
 from .. import db
 from ..models.user import User
+from ..models.menu import AdminMenu
 from .errors import bad_request
 from . import bp
 
@@ -31,6 +33,8 @@ def login():
     response = jsonify(u.to_dict())
     if u.verify_password(data['password']):
         response.status_code = 200
+
+    print(request.environ)
     return response
 
 
@@ -64,6 +68,28 @@ def register():
     response.status_code = 201
     # HTTP协议要求201响应包含一个值为新资源URL的Location头部
     response.headers['Location'] = url_for('api.get_user', id=u.id)
+    return response
+
+
+@bp.route('/menu', methods=['GET'])
+def get_menu():
+    # print(request.environ['HTTP_ORIGIN'])
+    username = 'admin'  # current_user()
+    menus = AdminMenu.get_menus(username)
+    data = [m.to_dict() for m in menus]
+    response = jsonify(data)
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
+    return response
+
+
+@bp.route('/authentication', methods=['GET'])
+def authenticate():
+    response = jsonify({
+        'data': 'auth success'
+    })
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 

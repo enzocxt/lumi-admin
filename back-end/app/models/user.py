@@ -30,6 +30,10 @@ class User(db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    @classmethod
+    def find_by(cls, **kwargs):
+        ...
+
     def from_dict(self, data, new_user=False):
         for field in ['username', 'email']:
             if field in data:
