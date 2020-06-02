@@ -7,7 +7,7 @@ from flask import (
 )
 from .. import db
 from ..models.user import User
-from ..models.menu import AdminMenu
+from ..models.menu import AdminMenu, AdminRole
 from .errors import bad_request
 from . import bp
 
@@ -103,3 +103,27 @@ def create_user():
 def get_user(id):
     """返回一个用户"""
     return jsonify(User.query.get_or_404(id).to_dict())
+
+
+@bp.route('/admin/user', methods=['GET', 'PUT'])
+def get_users():
+    """返回用户集合，分页"""
+    page = request.args.get('page', 1, type=int)
+    per_page = min(request.args.get('per_page', 10, type=int), 10)
+    data = User.to_collection_dict(User.query, page, per_page, 'api.get_users')
+    response = jsonify(data['items'])
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
+    return response
+
+
+@bp.route('/admin/role', methods=['GET'])
+def get_roles():
+    """返回用户角色，分页"""
+    page = request.args.get('page', 1, type=int)
+    per_page = min(request.args.get('per_page', 10, type=int), 10)
+    data = AdminRole.to_collection_dict(AdminRole.query, page, per_page, 'api.get_roles')
+    response = jsonify(data['items'])
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
+    return response

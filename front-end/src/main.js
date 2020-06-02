@@ -64,9 +64,12 @@ const initAdminMenu = (router, store) => {
 }
 
 const formatRoutes = (routes) => {
+  // 对路由信息进行格式转换
+  // 转换前的数据是后端返回的 AdminMenu 表的各项数据
   let fmtRoutes = []
   routes.forEach(route => {
     if (route.children) {
+      // 递归转换
       route.children = formatRoutes(route.children)
     }
 

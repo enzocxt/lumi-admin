@@ -6,10 +6,11 @@ from flask import (
     url_for,
 )
 from app import db
+from . import PaginatedAPIMixin
 from .user import User
 
 
-class AdminMenu(db.Model):
+class AdminMenu(PaginatedAPIMixin, db.Model):
     __tablename__ = 'admin_menu'
     id = db.Column(db.Integer, primary_key=True)
     path = db.Column(db.String(128), unique=True)
@@ -64,30 +65,38 @@ class AdminMenu(db.Model):
         return data
 
 
-def serialize(data):
-    if not isinstance(data, list):
-        return data.to_dict()
-    data = [serialize(d) for d in data]
-    return data
-
-
-class AdminRole(db.Model):
+class AdminRole(PaginatedAPIMixin, db.Model):
     __tablename__ = 'admin_role'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
     name_zh = db.Column(db.String(128))
     enabled = db.Column(db.Integer)
 
+    def to_dict(self):
+        data = self.__dict__.copy()
+        del data['_sa_instance_state']
+        return data
 
-class AdminRoleMenu(db.Model):
+
+class AdminRoleMenu(PaginatedAPIMixin, db.Model):
     __tablename__ = 'admin_role_menu'
     id = db.Column(db.Integer, primary_key=True)
     rid = db.Column(db.Integer)
     mid = db.Column(db.Integer)
 
+    def to_dict(self):
+        data = self.__dict__.copy()
+        del data['_sa_instance_state']
+        return data
 
-class AdminUserRole(db.Model):
+
+class AdminUserRole(PaginatedAPIMixin, db.Model):
     __tablename__ = 'admin_user_role'
     id = db.Column(db.Integer, primary_key=True)
     uid = db.Column(db.Integer)
     rid = db.Column(db.Integer)
+
+    def to_dict(self):
+        data = self.__dict__.copy()
+        del data['_sa_instance_state']
+        return data

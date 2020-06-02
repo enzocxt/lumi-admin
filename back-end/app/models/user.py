@@ -6,9 +6,10 @@ from flask import (
     url_for,
 )
 from app import db
+from . import PaginatedAPIMixin
 
 
-class User(db.Model):
+class User(PaginatedAPIMixin, db.Model):
     # 数据库使用的表名
     __tablename__ = 'users'
     # 类变量都是改模型的属性，定义为 db.Column 类的实例
@@ -45,9 +46,9 @@ class User(db.Model):
         data = {
             'id': self.id,
             'username': self.username,
-            # '_links': {
-            #     'self': url_for('api.get_user', id=self.id)
-            # }
+            '_links': {
+                'self': url_for('api.get_user', id=self.id)
+            }
         }
         if include_email:
             data['email'] = self.email

@@ -24,5 +24,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 ## API
-* `localhost:8088/api/login`
-* `localhost:8088/api/register`
+base URL : http://localhost:8088
+* `/api/login`
+* `/api/register`
+* `/api/admin/menu`
+* `/api/admin/role`
+* `/api/admin/user/status`

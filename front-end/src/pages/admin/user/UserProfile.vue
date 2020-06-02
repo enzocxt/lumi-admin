@@ -143,22 +143,29 @@ export default {
   },
   methods: {
     listUsers () {
+      // api[GET]: /api/admin/user
+      // 获取用户信息
       var _this = this
       this.$axios.get('/admin/user').then(resp => {
+        console.log('/admin/user response:', resp)
         if (resp && resp.status === 200) {
           _this.users = resp.data
         }
       })
     },
     listRoles () {
+      // api[GET]: /api/admin/role
+      // 获取角色信息
       var _this = this
       this.$axios.get('/admin/role').then(resp => {
+        console.log('/admin/role response:', resp)
         if (resp && resp.status === 200) {
           _this.roles = resp.data
         }
       })
     },
     commitStatusChange (value, user) {
+      // api[PUT]: /api/admin/user/status
       if (user.username !== 'admin') {
         this.$axios.put('/admin/user/status', {
           enabled: value,
@@ -178,6 +185,7 @@ export default {
       }
     },
     onSubmit (user) {
+      // api[PUT]: /api/admin/user
       let _this = this
       // 根据视图绑定的角色 id 向后端传送角色信息
       let roles = []
