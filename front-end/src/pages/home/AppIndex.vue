@@ -1,16 +1,16 @@
 <template>
   <div style="margin-top: 40px">
     <side-menu id="side-menu"></side-menu>
-      <div class="home">
-        <div id="header-div">
-          <div style="height: 150px"></div>
-          <carousel></carousel>
-          <quick-nav style="float: right;margin-top: -450px;"></quick-nav>
-        </div>
-        <update-card id="update-card"></update-card>
-        <slogan id="slogan"></slogan>
-        <about id="about"></about>
+    <div class="home">
+      <div id="header-div">
+        <div style="height: 30px"></div>
+        <quick-nav style="float: left;"></quick-nav>
+        <carousel></carousel>
       </div>
+      <update-card id="update-card"></update-card>
+      <slogan id="slogan"></slogan>
+      <about id="about"></about>
+    </div>
   </div>
 </template>
 

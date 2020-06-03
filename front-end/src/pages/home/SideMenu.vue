@@ -6,7 +6,7 @@
         <el-menu-item index="1">
           <i class="el-icon-menu"></i>
           <!-- slot 的作用？ -->
-          <span slot="title">技术采用</span>
+          <span slot="title">相关简介</span>
         </el-menu-item>
       </a>
       <a href="#update-card">

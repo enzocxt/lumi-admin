@@ -1,13 +1,13 @@
 <template>
   <el-card class="card-carousel">
-  <el-carousel  class="push" :interval="4000" arrow="always">
-    <el-carousel-item v-for="item in items" :key="item.id">
-      <a :href=item.link target="_blank">
-        <img :src=item.img alt="" class="carousel_img">
-      </a>
-      <h3>{{ item.title }}</h3>
-    </el-carousel-item>
-  </el-carousel>
+    <el-carousel  class="push" :interval="4000" arrow="always">
+      <el-carousel-item v-for="item in items" :key="item.id">
+        <a :href=item.link target="_blank">
+          <img :src=item.img alt="" class="carousel_img">
+        </a>
+        <h3>{{ item.title }}</h3>
+      </el-carousel-item>
+    </el-carousel>
   </el-card>
 </template>
 
@@ -16,24 +16,20 @@ export default {
   name: 'Carousel',
   data: function () {
     return {
-      // TODO: 修改成光明城相关内容
-      items: [{
-        id: 1,
-        title: 'How2J.cn - Java 全栈学习网站',
-        img: '../../../static/img/carousel/how2j.png',
-        link: 'http://how2j.cn?p=50613'},
-      {
-        id: 2,
-        title: 'Vue.js - 渐进式 JavaScript 框架',
-        img: '../../../static/img/carousel/vue.png',
-        link: 'https://cn.vuejs.org/'
-      },
-      {
-        id: 3,
-        title: 'element-ui - 网站快速成型工具',
-        img: '../../../static/img/carousel/element.png',
-        link: 'http://element-cn.eleme.io/#/zh-CN'
-      }]
+      items: [
+        {
+          id: 1,
+          title: '光明城豆瓣小站',
+          img: '../../../static/img/carousel/luminocity.jpg',
+          link: 'https://site.douban.com/246052/'
+        },
+        {
+          id: 2,
+          title: 'Der Zug 豆瓣小站',
+          img: '../../../static/img/carousel/derzug.jpg',
+          link: 'https://site.douban.com/249336/?ref=similar_sites'
+        }
+      ]
     }
   }
 }
@@ -65,7 +61,7 @@ export default {
 }
 .carousel_img {
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
   text-align: center;
 }
 </style>
