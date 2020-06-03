@@ -20,15 +20,12 @@
         <el-form-item label="出版日期" :label-width="formLabelWidth" prop="date">
           <el-input v-model="form.publish_date" autocomplete="off"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="出版社" :label-width="formLabelWidth" prop="press">
-          <el-input v-model="form.press" autocomplete="off"></el-input>
-        </el-form-item> -->
         <el-form-item label="封面" :label-width="formLabelWidth" prop="cover">
           <el-input v-model="form.cover" autocomplete="off" placeholder="图片 URL"></el-input>
           <img-upload @onUpload="uploadImg" ref="imgUpload"></img-upload>
         </el-form-item>
         <el-form-item label="简介" :label-width="formLabelWidth" prop="abs">
-          <el-input type="textarea" v-model="form.abs" autocomplete="off"></el-input>
+          <el-input type="textarea" rows="7" v-model="form.abs" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="分类" :label-width="formLabelWidth" prop="cid">
           <el-select v-model="form.category.id" placeholder="请选择分类">

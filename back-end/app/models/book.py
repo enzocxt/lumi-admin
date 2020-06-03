@@ -44,3 +44,21 @@ class Book(PaginatedAPIMixin, db.Model):
 
     def __repr__(self):
         return f'<Book ({self.title})>'
+
+
+class Category(PaginatedAPIMixin, db.Model):
+    __tablename__ = 'Category'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128))
+
+    @classmethod
+    def find_by(cls, **kwargs):
+        ...
+
+    def to_dict(self):
+        data = self.__dict__.copy()
+        del data['_sa_instance_state']
+        return data
+
+    def __repr__(self):
+        return f'<Category ({self.name})>'

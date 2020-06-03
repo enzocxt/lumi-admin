@@ -64,6 +64,7 @@ export default {
       // api[GET]: /api/books
       var _this = this
       this.$axios.get('/books').then(resp => {
+        console.log('books response:', resp)
         if (resp && resp.status === 200) {
           _this.books = resp.data
         }
@@ -119,7 +120,7 @@ export default {
         author: item.author,
         publish_date: item.publish_date,
         // press: item.press,
-        abs: item.abs,
+        abs: item.abstract,
         category: {
           id: item.category.id.toString(),
           name: item.category.name

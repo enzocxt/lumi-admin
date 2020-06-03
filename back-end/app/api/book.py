@@ -5,7 +5,7 @@ from flask import (
     make_response,
 )
 from .. import db
-from ..models.book import Book
+from ..models.book import Book, Category
 from .errors import bad_request
 from . import bp
 
@@ -19,7 +19,15 @@ def book():
 @bp.route('/books', methods=['GET'])
 def get_books():
     """返回所有图书"""
-    response = jsonify([b.to_dict() for b in Book.query.all()])
+    categories = [c.to_dict() for c in Category.query.all()]
+    category = {c['id']: c['name'] for c in categories}
+    books = [b.to_dict() for b in Book.query.all()]
+    for b in books:
+        b['category'] = {
+            'id': b['cid'],
+            'name': category[b['cid']],
+        }
+    response = jsonify(books)
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
