@@ -57,24 +57,46 @@ export default {
   },
   methods: {
     loadArticles () {
-      // api[GET]: /api/article/<pageSize>/<num>
+      // api[GET]: /api/article/<pageSize>/<pageNum>
       var _this = this
       this.$axios.get('/article/' + this.pageSize + '/1')
         .then(resp => {
-          if (resp && resp.data.code === 200) {
-            _this.articles = resp.data.result.content
-            _this.total = resp.data.result.totalElements
+          console.log('article response:', resp)
+          if (resp && resp.status === 200) {
+            // _this.articles = resp.data.result.content
+            // _this.total = resp.data.result.totalElements
+            _this.articles = []
+            resp.data.forEach(ele => {
+              // re-format article
+              let obj = {
+                id: -1,
+                articleTitle: '',
+                articleAbstract: '',
+                articleCover: '',
+                articleDate: '',
+              }
+              obj.id = ele.id
+              obj.articleTitle = ele.article_title
+              obj.articleAbstract = ele.article_abstract
+              obj.articleCover = ele.article_cover
+              obj.articleDate = ele.article_date
+              _this.articles.push(obj)
+            })
+            _this.total = resp.data.length
           }
         })
     },
     handleCurrentChange (page) {
+      // api[GET]: /api/article/<pageSize>/<pageNum>
       var _this = this
-      this.$axios.get('/article/' + this.pageSize + '/' + page).then(resp => {
-        if (resp && resp.data.code === 200) {
-          _this.articles = resp.data.result.content
-          _this.total = resp.data.result.totalElements
-        }
-      })
+      this.$axios.get('/article/' + this.pageSize + '/' + page)
+        .then(resp => {
+          if (resp && resp.data.code === 200) {
+            console.log('article response:', resp)
+            _this.articles = resp.data
+            _this.total = resp.data.length
+          }
+        })
     }
   }
 }

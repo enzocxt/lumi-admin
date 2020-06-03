@@ -33,12 +33,28 @@ export default {
       var _this = this
       this.$axios.get(`/article/${this.$route.query.id}`)
         .then(resp => {
-        console.log(resp)
-        if (resp && resp.status === 200) {
-          // _this.article = resp.data
-          _this.article = resp.data.result
-        }
-      })
+          console.log('article response:', resp)
+          if (resp && resp.status === 200) {
+            // _this.article = resp.data
+            // re-format article
+            let ele = resp.data
+            let tmp = {
+              id: -1,
+              articleTitle: '',
+              articleContentHtml: '',
+              articleAbstract: '',
+              articleCover: '',
+              articleDate: '',
+            }
+            tmp.id = ele.id
+            tmp.articleTitle = ele.article_title
+            tmp.articleContentHtml = ele.article_content_html
+            tmp.articleAbstract = ele.article_abstract
+            tmp.articleCover = ele.article_cover
+            tmp.articleDate = ele.article_date
+            _this.article = tmp
+          }
+        })
     }
   }
 }
