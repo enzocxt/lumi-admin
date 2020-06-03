@@ -16,6 +16,7 @@ export default {
   name: 'Carousel',
   data: function () {
     return {
+      // TODO: 修改成光明城相关内容
       items: [{
         id: 1,
         title: 'How2J.cn - Java 全栈学习网站',

@@ -5,6 +5,7 @@
       <a href="#header-div">
         <el-menu-item index="1">
           <i class="el-icon-menu"></i>
+          <!-- slot 的作用？ -->
           <span slot="title">技术采用</span>
         </el-menu-item>
       </a>
