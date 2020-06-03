@@ -16,6 +16,7 @@
       <i class="el-icon-menu"></i>
       <span slot="title">未出版</span>
     </el-menu-item>
+    <!-- TODO: （动态）增加其他类别/标签 -->
   </el-menu>
 </template>
 

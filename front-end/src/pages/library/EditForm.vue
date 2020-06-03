@@ -17,9 +17,9 @@
         <el-form-item label="作者" :label-width="formLabelWidth" prop="author">
           <el-input v-model="form.author" autocomplete="off"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="出版日期" :label-width="formLabelWidth" prop="date">
-          <el-input v-model="form.date" autocomplete="off"></el-input>
-        </el-form-item> -->
+        <el-form-item label="出版日期" :label-width="formLabelWidth" prop="date">
+          <el-input v-model="form.publish_date" autocomplete="off"></el-input>
+        </el-form-item>
         <!-- <el-form-item label="出版社" :label-width="formLabelWidth" prop="press">
           <el-input v-model="form.press" autocomplete="off"></el-input>
         </el-form-item> -->
@@ -64,8 +64,7 @@ export default {
         abbr: '',
         title: '',
         author: '',
-        // date: '',
-        // press: '',
+        publish_date: '',
         cover: '',
         abs: '',
         category: {
@@ -83,8 +82,7 @@ export default {
         abbr: '',
         title: '',
         author: '',
-        // date: '',
-        // press: '',
+        publish_date: '',
         cover: '',
         abs: '',
         category: ''
@@ -92,14 +90,13 @@ export default {
     },
     onSubmit () {
       this.$axios
-        .post('/books', {
+        .post('/book', {
           id: this.form.id,
           abbr: this.form.abbr,
           cover: this.form.cover,
           title: this.form.title,
           author: this.form.author,
-          // date: this.form.date,
-          // press: this.form.press,
+          publish_date: this.form.publish_date,
           abs: this.form.abs,
           category: this.form.category
         }).then(resp => {

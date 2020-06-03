@@ -7,9 +7,8 @@
                   :key="item.id">
         <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{ item.title }}</p>
         <p slot="content" style="font-size: 13px;margin-bottom: 6px">
-          <span>{{ item.author }}</span><!--  / -->
-          <!-- <span>{{ item.date }}</span> /
-          <span>{{ item.press }}</span> -->
+          <span>{{ item.author }}</span> /
+          <span>{{ item.date }}</span>
         </p>
         <p slot="content" style="width: 300px" class="abstract">{{ item.abs }}</p>
         <el-card style="width: 135px;margin-bottom: 20px;height: 233px;float: left;margin-right: 15px" class="book"
@@ -61,6 +60,8 @@ export default {
   },
   methods: {
     loadBooks () {
+      // 一次性加载所有 books，然后在页面中分页，并不分页请求数据库
+      // api[GET]: /api/books
       var _this = this
       this.$axios.get('/books').then(resp => {
         if (resp && resp.status === 200) {
@@ -70,9 +71,10 @@ export default {
     },
     handleCurrentChange: function (currentPage) {
       this.currentPage = currentPage
-      // console.log("current page:", this.currentPage)
     },
     searchResult () {
+      // api[GET]: /api/search?keywords=xxx  [废除使用]
+      // api[POST]: /api/search
       var _this = this
       this.$axios
         // .get('/search?keywords=' + this.$refs.searchBar.keywords, {
@@ -91,6 +93,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
+        // api[POST]: /api/delete
         // post 请求的构造方式：
         // post 不能像 get 请求那样直接把参数写在 URL 里，而需要以键值对的方式传递
         this.$axios
@@ -114,7 +117,7 @@ export default {
         cover: item.cover,
         title: item.title,
         author: item.author,
-        // date: item.date,
+        publish_date: item.publish_date,
         // press: item.press,
         abs: item.abs,
         category: {

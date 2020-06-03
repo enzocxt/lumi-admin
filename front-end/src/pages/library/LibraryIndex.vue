@@ -22,16 +22,16 @@ export default {
   },
   methods: {
     listByCategory () {
+      // api[GET]: /api/category/<cid>/book
       // 子组件 SideMenu 触发（$emit）indexSelect 事件执行 listByCategory()
       // 通过 this.$refs.sideMenu.cid 获取子组件的 data
       var _this = this
       var cid = this.$refs.sideMenu.cid
-      // 与后端 URL 的构造方式对应（"/api/categories/{cid}/books"）
-      var url = `categories/${cid}/books`
+      // 与后端 URL 的构造方式对应（"/api/category/{cid}/books"）
+      var url = `category/${cid}/books`
       this.$axios.get(url).then(resp => {
         if (resp && resp.status === 200) {
           _this.$refs.booksArea.books = resp.data
-          // _this.$refs.booksArea.books = resp.data.result
         }
       })
     }
