@@ -5,14 +5,29 @@
       <el-card style="text-align: left">
         <div v-for="article in articles" :key="article.id">
           <div style="float:left;width:85%;height: 150px;">
-            <router-link class="article-link" :to="{path:'jotter/article',query:{id: article.id}}"><span style="font-size: 20px"><strong>{{article.articleTitle}}</strong></span></router-link>
-            <el-divider content-position="left">{{article.articleDate}}</el-divider>
-            <router-link class="article-link" :to="{path:'jotter/article',query:{id: article.id}}"><p>{{article.articleAbstract}}</p></router-link>
+            <router-link 
+              class="article-link" 
+              :to="{path: 'jotter/article', query: {id: article.id}}"
+            >
+              <span style="font-size: 20px">
+                <strong>{{ article.articleTitle }}</strong>
+              </span>
+            </router-link>
+            <el-divider content-position="left">
+              {{ article.articleDate }}
+            </el-divider>
+            <router-link 
+              class="article-link" 
+              :to="{path: 'jotter/article', query: {id: article.id}}"
+            >
+              <p>{{ article.articleAbstract }}</p>
+            </router-link>
           </div>
           <el-image
             style="margin:18px 0 0 30px;width:100px;height: 100px"
             :src="article.articleCover"
-            fit="cover"></el-image>
+            fit="cover"
+          ></el-image>
           <el-divider></el-divider>
         </div>
       </el-card>
@@ -42,13 +57,15 @@ export default {
   },
   methods: {
     loadArticles () {
+      // api[GET]: /api/article/<pageSize>/<num>
       var _this = this
-      this.$axios.get('/article/' + this.pageSize + '/1').then(resp => {
-        if (resp && resp.data.code === 200) {
-          _this.articles = resp.data.result.content
-          _this.total = resp.data.result.totalElements
-        }
-      })
+      this.$axios.get('/article/' + this.pageSize + '/1')
+        .then(resp => {
+          if (resp && resp.data.code === 200) {
+            _this.articles = resp.data.result.content
+            _this.total = resp.data.result.totalElements
+          }
+        })
     },
     handleCurrentChange (page) {
       var _this = this
