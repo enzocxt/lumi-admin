@@ -25,8 +25,25 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## API
 base URL : http://localhost:8088
+
+Authentication APIs
 * `/api/login`
 * `/api/register`
+
+Admin APIs
 * `/api/admin/menu`
+* `/api/admin/user`
 * `/api/admin/role`
 * `/api/admin/user/status`
+
+Article APIs
+* `/api/article/<int:id>`
+* `/api/article/<int:per_page>/<int:page>`
+
+Book APIs
+* `/api/books`
+* `[POST] /api/book`
+* `/api/book/<int:id>`
+* `[POST]: /api/delete`
+* `[POST]: /api/search`
+* `/api/category/<int:cid>/books`
