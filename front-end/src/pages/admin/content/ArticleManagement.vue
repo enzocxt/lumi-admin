@@ -86,7 +86,7 @@ export default {
     return {
       articles: [],
       pageSize: 10,
-      total: ''
+      total: 0
     }
   },
   mounted () {
@@ -98,26 +98,50 @@ export default {
     }
   },
   methods: {
+    formatArticles (articles) {
+      let newArticles = []
+      articles.forEach(ele => {
+        // re-format article
+        let obj = {
+          id: -1,
+          articleTitle: '',
+          articleAbstract: '',
+          articleCover: '',
+          articleDate: '',
+        }
+        obj.id = ele.id
+        obj.articleTitle = ele.article_title
+        obj.articleAbstract = ele.article_abstract
+        obj.articleCover = ele.article_cover
+        obj.articleDate = ele.article_date
+        newArticles.push(obj)
+      })
+      return newArticles
+    },
     loadArticles () {
+      // api[GET]: /api/article/<pageSize>/1
       var _this = this
       this.$axios.get(`/article/${this.pageSize}/1`).then(resp => {
         if (resp && resp.status === 200) {
           // Becareful about the format of response
           // the real data would be : resp.data.content or resp.data.result.content
           // _this.articles = resp.data.content
-          _this.articles = resp.data.result.content
+          _this.articles = _this.formatArticles(resp.data)
           console.log(_this.articles)
-          _this.total = resp.data.totalElements
+          _this.total = resp.data.length
         }
       })
     },
     handleCurrentChange (page) {
+      // // api[GET]: /api/article/<pageSize>/<pageNum>
       var _this = this
-      this.$axios.get(`/article/${this.pageSize}/${page}`).then(resp => {
-        if (resp && resp.status === 200) {
-          _this.articles = resp.data.content
-          _this.total = resp.data.totalElements
-        }
+      this.$axios.get(`/article/${this.pageSize}/${page}`)
+        .then(resp => {
+          if (resp && resp.status === 200) {
+            console.log('article response:', resp)
+            _this.articles = _this.formatArticles(resp.data)
+            _this.total = resp.data.length
+          }
       })
     },
     viewArticle (id) {
@@ -142,6 +166,7 @@ export default {
       )
     },
     deleteArticle (id) {
+      // api[DELETE]: /api/admin/content/article/<id>
       this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
