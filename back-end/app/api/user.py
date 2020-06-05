@@ -80,8 +80,6 @@ def get_menu():
     menus = AdminMenu.get_menus(username)
     data = [m.to_dict() for m in menus]
     response = jsonify(data)
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -90,8 +88,6 @@ def authenticate():
     response = jsonify({
         'data': 'auth success'
     })
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -114,8 +110,6 @@ def get_users():
     per_page = min(request.args.get('per_page', 10, type=int), 10)
     data = User.to_collection_dict(User.query, page, per_page, 'api.get_users')
     response = jsonify(data['items'])
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -126,6 +120,4 @@ def get_roles():
     per_page = min(request.args.get('per_page', 10, type=int), 10)
     data = AdminRole.to_collection_dict(AdminRole.query, page, per_page, 'api.get_roles')
     response = jsonify(data['items'])
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
