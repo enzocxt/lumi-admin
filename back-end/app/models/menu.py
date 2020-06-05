@@ -13,7 +13,7 @@ from .user import User
 class AdminMenu(PaginatedAPIMixin, db.Model):
     __tablename__ = 'admin_menu'
     id = db.Column(db.Integer, primary_key=True)
-    path = db.Column(db.String(128), unique=True)
+    path = db.Column(db.String(128))
     name = db.Column(db.String(128))
     name_zh = db.Column(db.String(128))
     icon_cls = db.Column(db.String(128))

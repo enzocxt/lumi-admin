@@ -7,8 +7,8 @@ from . import PaginatedAPIMixin
 
 
 class Book(PaginatedAPIMixin, db.Model):
-    __tablename__ = 'Book'
-    id = db.Column(db.Integer, primary_key=True)
+    __tablename__ = 'book'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     no = db.Column(db.Float)
     abbr = db.Column(db.String(128))
     tag = db.Column(db.String(128))
@@ -47,7 +47,7 @@ class Book(PaginatedAPIMixin, db.Model):
 
 
 class Category(PaginatedAPIMixin, db.Model):
-    __tablename__ = 'Category'
+    __tablename__ = 'category'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
 

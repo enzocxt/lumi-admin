@@ -62,8 +62,10 @@ def register():
 
     u = User()
     u.from_dict(data, new_user=True)
+    print(u.__dict__)
     db.session.add(u)
     db.session.commit()
+    print(u.to_dict())
     response = jsonify(u.to_dict())
     response.status_code = 201
     # HTTP协议要求201响应包含一个值为新资源URL的Location头部

@@ -11,7 +11,7 @@ from . import PaginatedAPIMixin
 
 class User(PaginatedAPIMixin, db.Model):
     # 数据库使用的表名
-    __tablename__ = 'users'
+    __tablename__ = 'user'
     # 类变量都是改模型的属性，定义为 db.Column 类的实例
     id = db.Column(db.Integer, primary_key=True)
     # Flask-SQLAlchemy 要求每个模型都定义主键，这一列经常命名为 id
