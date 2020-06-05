@@ -46,8 +46,10 @@ export default {
       })
     },
     adjustCovers () {
+      // 调整封面图片大小
       let _this = this
       _this.books.forEach(book => {
+        // 图片对象[套路]
         let img = new Image()
         img.src = _this.getCoverUrl(book.abbr)
         img.onload = function () {
@@ -56,7 +58,6 @@ export default {
           _this.$set(imgInfo, 'width', img.width)
           _this.$set(imgInfo, 'height', img.height)
           _this.$set(book, 'img', imgInfo)
-          // console.log(imgInfo)
         }
       })
     },
@@ -98,39 +99,8 @@ div.thumb {
   height: 270px;
 }
 
-/* test */
-div.fake-wrap {
-  overflow: hidden;
-  position: absolute;
-  float: left;
-}
-
-div.fake-wrap img.fake {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  visibility: hidden;
-  width: auto;
-}
-
-.scale-wrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.scale-wrapper img.bks {
-  width: 50%;
-}
-/* test finish */
-
 .bks {
-  position: absolute;
-  /* display: none; */
+  position: absolute !important;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -138,7 +108,7 @@ div.fake-wrap img.fake {
 
 .shadow {
   position: relative;
-  box-shadow: 12px 12px 0 #C0C0C0;
+  box-shadow: 12px 12px 0 #C0C0C0 !important;
 }
 
 div.thumb a {
