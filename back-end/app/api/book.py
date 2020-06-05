@@ -32,8 +32,6 @@ def get_books():
     for b in books:
         add_category(category, b)
     response = jsonify(books)
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -41,8 +39,6 @@ def get_books():
 def get_book(id):
     """返回一篇文章"""
     response = jsonify(Book.query.get_or_404(id).to_dict())
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -51,8 +47,6 @@ def get_books_page(per_page, page):
     """返回文章集合，分页"""
     data = Book.to_collection_dict(Book.query, page, per_page, 'api.get_books_page')
     response = jsonify(data['items'])
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -65,6 +59,4 @@ def get_books_of_category(cid):
     for b in books:
         add_category(category, b)
     response = jsonify(books)
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response

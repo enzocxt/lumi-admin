@@ -13,7 +13,7 @@ from .user import User
 class AdminMenu(PaginatedAPIMixin, db.Model):
     __tablename__ = 'admin_menu'
     id = db.Column(db.Integer, primary_key=True)
-    path = db.Column(db.String(128), unique=True)
+    path = db.Column(db.String(128))
     name = db.Column(db.String(128))
     name_zh = db.Column(db.String(128))
     icon_cls = db.Column(db.String(128))
@@ -95,6 +95,31 @@ class AdminUserRole(PaginatedAPIMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uid = db.Column(db.Integer)
     rid = db.Column(db.Integer)
+
+    def to_dict(self):
+        data = self.__dict__.copy()
+        del data['_sa_instance_state']
+        return data
+
+
+class AdminPermission(PaginatedAPIMixin, db.Model):
+    __tablename__ = 'admin_permission'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128))
+    desc_ = db.Column(db.String(128))
+    url = db.Column(db.String(128))
+
+    def to_dict(self):
+        data = self.__dict__.copy()
+        del data['_sa_instance_state']
+        return data
+
+
+class AdminRolePermission(PaginatedAPIMixin, db.Model):
+    __tablename__ = 'admin_role_permission'
+    id = db.Column(db.Integer, primary_key=True)
+    rid = db.Column(db.Integer)
+    pid = db.Column(db.Integer)
 
     def to_dict(self):
         data = self.__dict__.copy()

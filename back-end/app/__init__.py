@@ -20,7 +20,11 @@ def create_app(config_name):
     app.config.from_object(Config)
 
     # Enable CORS
-    CORS(app)
+    # enable 'Access-Control-Allow-Credentials'
+    # 相当于在路由函数末尾加上如下两行（response headers 添加字段）
+    # response.headers['Access-Control-Allow-Credentials'] = 'true'
+    # response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
+    CORS(app, supports_credentials=True)
     # Init Flask-SQLAlchemy
     db.init_app(app)
     # Init Flask-Migrate

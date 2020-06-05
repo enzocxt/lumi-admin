@@ -20,6 +20,20 @@ class Article(PaginatedAPIMixin, db.Model):
     def find_by(cls, **kwargs):
         ...
 
+    def from_dict(self, data):
+        attrmap = {
+            'id': 'id',
+            'articleTitle': 'article_title',
+            'articleContentMd': 'article_content_md',
+            'articleContentHtml': 'article_content_html',
+            'articleAbstract': 'article_abstract',
+            'articleCover': 'article_cover',
+            'articleDate': 'article_date',
+        }
+        for field in attrmap:
+            if field in data:
+                setattr(self, attrmap[field], data[field])
+
     def to_dict(self):
         data = self.__dict__.copy()
         del data['_sa_instance_state']

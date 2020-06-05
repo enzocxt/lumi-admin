@@ -74,6 +74,7 @@ export default {
   },
   methods: {
     saveArticles (value, render) {
+      // api[POST]: /api/admin/content/article
       // value : md, render : html
       this.$confirm('是否保存并发布文章?', '提示', {
         confirmButtonText: '确定',
@@ -90,7 +91,7 @@ export default {
               articleCover: this.article.articleCover,
               articleDate: this.article.articleDate
             }).then(resp => {
-            console.log(resp)
+            console.log('POST article:', resp)
             if (resp && resp.status === 200) {
               this.$message({
                 type: 'info',

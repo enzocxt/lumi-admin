@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     loadArticles () {
-      // api[GET]: /api/article/<pageSize>/<pageNum>
+      // api[GET]: /api/article/<pageSize>/1
       var _this = this
       this.$axios.get('/article/' + this.pageSize + '/1')
         .then(resp => {
@@ -89,7 +89,7 @@ export default {
     handleCurrentChange (page) {
       // api[GET]: /api/article/<pageSize>/<pageNum>
       var _this = this
-      this.$axios.get('/article/' + this.pageSize + '/' + page)
+      this.$axios.get(`/article/${this.pageSize}/${page}`)
         .then(resp => {
           if (resp && resp.data.code === 200) {
             console.log('article response:', resp)

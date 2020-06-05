@@ -34,7 +34,6 @@ def login():
     if u.verify_password(data['password']):
         response.status_code = 200
 
-    print(request.environ)
     return response
 
 
@@ -62,8 +61,11 @@ def register():
 
     u = User()
     u.from_dict(data, new_user=True)
+    # 这里没有 id 信息
     db.session.add(u)
     db.session.commit()
+    # 由于 id 是 primary key，数据库自动会添加 id 数据，应该是 autoincrement
+    # print(u.to_dict())
     response = jsonify(u.to_dict())
     response.status_code = 201
     # HTTP协议要求201响应包含一个值为新资源URL的Location头部
@@ -78,8 +80,6 @@ def get_menu():
     menus = AdminMenu.get_menus(username)
     data = [m.to_dict() for m in menus]
     response = jsonify(data)
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -88,8 +88,6 @@ def authenticate():
     response = jsonify({
         'data': 'auth success'
     })
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -112,8 +110,6 @@ def get_users():
     per_page = min(request.args.get('per_page', 10, type=int), 10)
     data = User.to_collection_dict(User.query, page, per_page, 'api.get_users')
     response = jsonify(data['items'])
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response
 
 
@@ -124,6 +120,4 @@ def get_roles():
     per_page = min(request.args.get('per_page', 10, type=int), 10)
     data = AdminRole.to_collection_dict(AdminRole.query, page, per_page, 'api.get_roles')
     response = jsonify(data['items'])
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Origin'] = request.environ['HTTP_ORIGIN']
     return response

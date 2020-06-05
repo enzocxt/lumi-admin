@@ -15,6 +15,7 @@ export default {
   name: 'Header',
   methods: {
     logout () {
+      // api[GET]: /api/logout
       var _this = this
       this.$axios.get('/logout').then(resp => {
         if (resp.data.code === 200) {

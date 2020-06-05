@@ -33,6 +33,7 @@ export default {
   },
   computed: {
     adminMenus () {
+      // 在 main.js 中获取 adminMenus
       console.log(this.$store.state.adminMenus)
       return this.$store.state.adminMenus
     },
