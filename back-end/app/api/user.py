@@ -34,7 +34,6 @@ def login():
     if u.verify_password(data['password']):
         response.status_code = 200
 
-    print(request.environ)
     return response
 
 
@@ -62,10 +61,11 @@ def register():
 
     u = User()
     u.from_dict(data, new_user=True)
-    print(u.__dict__)
+    # 这里没有 id 信息
     db.session.add(u)
     db.session.commit()
-    print(u.to_dict())
+    # 由于 id 是 primary key，数据库自动会添加 id 数据，应该是 autoincrement
+    # print(u.to_dict())
     response = jsonify(u.to_dict())
     response.status_code = 201
     # HTTP协议要求201响应包含一个值为新资源URL的Location头部

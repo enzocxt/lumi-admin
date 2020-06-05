@@ -6,7 +6,7 @@ import axios from 'axios'
 
 axios.defaults.timeout = 60000 // request timeout
 // 为了让前端能够带上 cookie，需要通过 axios 主动开启 withCredentails 功能
-// axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true
 // axios.defaults.baseURL = 'http://localhost:8088/api'
 // Configure DEVELOP ENV and PRODUCT ENV
 if (process.env.NODE_ENV == 'development') {

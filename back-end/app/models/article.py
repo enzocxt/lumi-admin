@@ -8,9 +8,8 @@ from . import PaginatedAPIMixin
 
 class Article(PaginatedAPIMixin, db.Model):
     __tablename__ = 'article'
-    # autoincrement 设置自增
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
-    article_title = db.Column(db.String(128), nullable=False, default='')
+    id = db.Column(db.Integer, primary_key=True)
+    article_title = db.Column(db.String(128))
     article_content_md = db.Column(db.Text)
     article_content_html = db.Column(db.Text)
     article_abstract = db.Column(db.String(128))

@@ -20,7 +20,8 @@ def create_app(config_name):
     app.config.from_object(Config)
 
     # Enable CORS
-    CORS(app)
+    # enable 'Access-Control-Allow-Credentials'
+    CORS(app, supports_credentials=True)
     # Init Flask-SQLAlchemy
     db.init_app(app)
     # Init Flask-Migrate
