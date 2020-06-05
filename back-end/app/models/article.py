@@ -32,7 +32,7 @@ class Article(PaginatedAPIMixin, db.Model):
         }
         for field in attrmap:
             if field in data:
-                setattr(self, field, data[field])
+                setattr(self, attrmap[field], data[field])
 
     def to_dict(self):
         data = self.__dict__.copy()
