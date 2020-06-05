@@ -13,7 +13,28 @@
 <script>
 export default {
   name: 'Familiar',
-  components: {}
+  components: {},
+  data () {
+    return {
+      familiars: []
+    }
+  },
+  mounted () {
+    this.getFamiliars()
+  },
+  methods: {
+    getFamiliars () {
+      // api[GET]: /api/familiar
+      // 从后端获得所有 familiar 图片
+      let _this = this
+      _this.$axios.get('/familiar').then(resp => {
+        console.log('familiar response:', resp)
+        if (resp && resp.status === 200) {
+          _this.familiars = resp.data
+        }
+      })
+    }
+  }
 }
 </script>
 
