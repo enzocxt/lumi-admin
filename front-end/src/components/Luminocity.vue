@@ -1,17 +1,21 @@
 <template>
   <div>
     <familiar></familiar>
+    <div class="separator"></div>
+    <books></books>
     <router-view/>
   </div>
 </template>
 
 <script>
 import Familiar from './home/Familiar'
+import Books from './home/Books'
 
 export default {
   name: 'Luminocity',
   components: {
     Familiar,
+    Books,
   }
 }
 </script>
@@ -41,4 +45,11 @@ body {
 .cls-hide {
   display: none;
 }
+
+.separator {
+  display: block;
+  position: relative;
+	padding-top: 90px;
+}
+
 </style>
