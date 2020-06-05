@@ -1,8 +1,15 @@
 <template>
   <div id="id-familiar">
     <div id="id-familiar-wrapper">
-      <div id="id-familiar-slideshow" class="pointer">
-      </div>
+      <!-- <div id="id-familiar-slideshow" class="pointer"> -->
+      <!-- </div> -->
+      <el-card id="id-familiar-slideshow">
+        <el-carousel :interval="3000" arrow="always">
+          <el-carousel-item v-for="item in familiars" :key="item.id">
+            <img :src="item.img" alt="">
+          </el-carousel-item>
+        </el-carousel>
+      </el-card>
       <div id="intro">
         <a>光明城是同济大学出版社城市、建筑、设计专业出版品牌，由群岛工作室负责策划及出版。致力以更新的出版理念、更敏锐的视角、更积极的态度，回应今天中国城市、建筑、设计领域的问题。</a>
       </div>
@@ -16,7 +23,28 @@ export default {
   components: {},
   data () {
     return {
-      familiars: []
+      familiars: [
+        {
+          id: 1,
+          img: '../../../static/img/familiars/FP00_HBBP.jpg'
+        }, 
+        {
+          id: 2,
+          img: '../../../static/img/familiars/FP01_DSL.jpg'
+        }, 
+        {
+          id: 3,
+          img: '../../../static/img/familiars/FP02_HY.jpg'
+        }, 
+        {
+          id: 4,
+          img: '../../../static/img/familiars/FP03_SZJS.jpg'
+        }, 
+        {
+          id: 5,
+          img: '../../../static/img/familiars/FP04_RHGF.jpg'
+        }
+      ]
     }
   },
   mounted () {
