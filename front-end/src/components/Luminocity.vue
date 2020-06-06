@@ -3,6 +3,7 @@
     <familiar></familiar>
     <div class="separator"></div>
     <books></books>
+    <about></about>
     <router-view/>
   </div>
 </template>
@@ -10,12 +11,14 @@
 <script>
 import Familiar from './home/Familiar'
 import Books from './home/Books'
+import About from './home/About'
 
 export default {
   name: 'Luminocity',
   components: {
     Familiar,
     Books,
+    About,
   }
 }
 </script>
