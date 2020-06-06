@@ -13,7 +13,7 @@
         </el-carousel-item>
       </el-carousel>
       <!-- </el-card> -->
-      <div id="intro">
+      <div id="intro" v-show="showIntro">
         <a>光明城是同济大学出版社城市、建筑、设计专业出版品牌，由群岛工作室负责策划及出版。致力以更新的出版理念、更敏锐的视角、更积极的态度，回应今天中国城市、建筑、设计领域的问题。</a>
       </div>
     </div>
@@ -26,6 +26,7 @@ export default {
   components: {},
   data () {
     return {
+      showIntro: false,
       familiars: [
         {
           id: 1,
@@ -100,7 +101,7 @@ export default {
 #intro {
   z-index: 9999;
   position: relative;
-  display: none;
+  /* display: none; */
   width: 780px;
   margin-left: 240px;
 }

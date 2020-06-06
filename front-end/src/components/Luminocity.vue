@@ -2,10 +2,10 @@
   <div id="site">
     <div id="site-wrapper">
       <nav-bar></nav-bar>
-      <div id="logo">
+      <div id="logo" @mouseenter="setShowIntro()" @mouseleave="setShowIntro">
         <img class="logo-cn" src="../assets/logo_cn.png">
       </div>
-      <familiar></familiar>
+      <familiar ref="familiar"></familiar>
       <div class="separator"></div>
       <books></books>
       <about></about>
@@ -30,6 +30,16 @@ export default {
     Books,
     About,
     LumiFooter,
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+    setShowIntro () {
+      let tmp = this.$refs.familiar.showIntro
+      this.$refs.familiar.showIntro = !tmp
+    }
   }
 }
 </script>
