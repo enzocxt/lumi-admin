@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <familiar></familiar>
-    <div class="separator"></div>
-    <books></books>
-    <about></about>
-    <lumi-footer></lumi-footer>
-    <router-view/>
+  <div id="site">
+    <div id="site-wrapper">
+      <familiar></familiar>
+      <div class="separator"></div>
+      <books></books>
+      <about></about>
+      <lumi-footer></lumi-footer>
+      <router-view/>
+    </div>
   </div>
 </template>
 
