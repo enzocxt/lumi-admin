@@ -29,6 +29,18 @@ export default {
 </script>
 
 <style scoped>
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+@font-face{
+  font-family: 'FC';
+  src: url( 'http://fnt.webink.com/wfs/?drawer=2FF99E2B-FAF5-4EAB-9ED4-8A4BC2755E92&font=79FFD680-777D-F4B0-8FFE-043ABAB4969A');
+  font-weight:normal;font-style:normal;
+}
+@font-face{
+  font-family: 'FC';
+  src: url( 'http://fnt.webink.com/wfs/?drawer=2FF99E2B-FAF5-4EAB-9ED4-8A4BC2755E92&font=2AA35A4E-ED48-3B8D-3C79-2764EFAD2C9E');
+  font-weight:normal;font-style:italic;
+}
+
 html {
   position: relative;
 }
@@ -44,6 +56,7 @@ body {
   background: linear-gradient(to bottom,#f2d7d2,#ffffff,#f2d7d2,#ffffff,#f2d7d2,#ffffff,#f2d7d2,#ffffff,#f2d7d2);
   background-repeat:no-repeat
 }
+
 /* 通用的　*/
 /* 鼠标移动到元素上面显示效果 */
 .pointer {
@@ -53,11 +66,19 @@ body {
 .cls-hide {
   display: none;
 }
-
 .separator {
   display: block;
   position: relative;
 	padding-top: 90px;
+}
+
+#site {
+	width: 1280px;
+  margin: 0 auto 0 auto;
+}
+#site-wrapper {
+	/*padding: 60px 120px 60px 60px;*/
+  padding: 3.5% 9.375% 3.5% 4.6875%;
 }
 
 </style>
