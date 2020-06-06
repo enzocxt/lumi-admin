@@ -14,10 +14,13 @@
         </a>
       </div>
 		</div>
+    <book-display></book-display>
   </div>
 </template>
 
 <script>
+import BookDisplay from './BookDisplay.vue'
+
 export default {
   name: 'Books',
   components: {},
