@@ -4,6 +4,7 @@
       <div class="thumb"
         v-for="item in books" :key="item.id"
         v-if="item.img"
+        @click="displayBook(item.id)"
       >
         <img class="bks shadow" :src="item.img.url" :alt="item.abbr"
           :width="computeWidthOrHeight(item.img.width)"
@@ -14,7 +15,7 @@
         </a>
       </div>
 		</div>
-    <book-display></book-display>
+    <book-display v-if="toDisplayBook" ref="bookDisplay"></book-display>
   </div>
 </template>
 
@@ -27,7 +28,8 @@ export default {
   data () {
     return {
       proportion: 0.25,
-      books: []
+      books: [],
+      toDisplayBook: false,
     }
   },
   mounted () {
@@ -75,6 +77,13 @@ export default {
     },
     computeWidthOrHeight (ele) {
       return ele * this.proportion + 'px'
+    },
+    setDisplayBook () {
+      this.toDisplayBook = !this.toDisplayBook
+    },
+    displayBook (bookId) {
+      this.$refs.bookDisplay.book = this.books[bookId]
+      this.setDisplayBook()
     }
   }
 }

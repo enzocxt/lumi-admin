@@ -37,7 +37,7 @@ def get_books():
 
 @bp.route('/book/<int:id>', methods=['GET'])
 def get_book(id):
-    """返回一篇文章"""
+    """返回一本图书"""
     response = jsonify(Book.query.get_or_404(id).to_dict())
     return response
 

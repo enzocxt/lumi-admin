@@ -61,7 +61,8 @@ export default {
   components: {},
   data () {
     return {
-      pages: []
+      pages: [],
+      book: {}
     }
   },
   mounted () {
