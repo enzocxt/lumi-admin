@@ -1,9 +1,9 @@
 <template>
   <div id="nav">
-    <div class="nav-wrapper">
+    <div class="nav-wrapper" @mouseenter="setNavBar()" @mouseleave="setNavBar()">
       <img src="../../assets/logo.png" width="104px">
       <span class="nd">img/Logo.gif</span>
-      <ul id="menu">
+      <ul id="menu" v-show="showNavBar">
         <li>
           <a href="#/books">图书</a>
         </li>
@@ -43,11 +43,16 @@ export default {
   components: {},
   data () {
     return {
+      showNavBar: false,
     }
   },
   mounted () {
   },
   methods: {
+    setNavBar () {
+      console.log(this.showNavBar)
+      this.showNavBar = !this.showNavBar
+    }
   }
 }
 </script>
@@ -69,7 +74,7 @@ export default {
 
 .nav-wrapper img {
 	display: block;
-  margin-bottom: 45px;
+  padding-bottom: 45px;
 }
 
 .nav-wrapper img:hover{
@@ -78,12 +83,12 @@ export default {
 
 /* menu */
 #menu {
-	display: none;
+	/* display: none; */
   position: fixed;
 }
 
 #menu li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 #menu a {
