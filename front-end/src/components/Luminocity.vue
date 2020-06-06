@@ -1,6 +1,10 @@
 <template>
   <div id="site">
     <div id="site-wrapper">
+      <nav-bar></nav-bar>
+      <div id="logo">
+        <img class="logo-cn" src="../assets/logo_cn.png">
+      </div>
       <familiar></familiar>
       <div class="separator"></div>
       <books></books>
@@ -12,6 +16,7 @@
 </template>
 
 <script>
+import NavBar from './home/NavBar'
 import Familiar from './home/Familiar'
 import Books from './home/Books'
 import About from './home/About'
@@ -20,6 +25,7 @@ import LumiFooter from './home/LumiFooter'
 export default {
   name: 'Luminocity',
   components: {
+    NavBar,
     Familiar,
     Books,
     About,
@@ -81,4 +87,17 @@ body {
   padding: 3.5% 9.375% 3.5% 4.6875%;
 }
 
+#logo {
+	z-index: 9999;
+	position: fixed;
+	padding: 0 35px 0 35px;
+  bottom: 9.275%;
+	/* width: 45px; */
+}
+.logo-cn {
+  width: 45px;
+}
+#logo:hover {
+  cursor: pointer;
+}
 </style>
