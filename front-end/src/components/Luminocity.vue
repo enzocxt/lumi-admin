@@ -4,6 +4,7 @@
     <div class="separator"></div>
     <books></books>
     <about></about>
+    <lumi-footer></lumi-footer>
     <router-view/>
   </div>
 </template>
@@ -12,6 +13,7 @@
 import Familiar from './home/Familiar'
 import Books from './home/Books'
 import About from './home/About'
+import LumiFooter from './home/LumiFooter'
 
 export default {
   name: 'Luminocity',
@@ -19,6 +21,7 @@ export default {
     Familiar,
     Books,
     About,
+    LumiFooter,
   }
 }
 </script>
