@@ -16,7 +16,11 @@
       </div>
 		</div>
     <!-- v-if 和 v-show 的区别 -->
-    <book-display v-if="toDisplayBook" ref="bookDisplay" :book="currentBook"></book-display>
+    <book-display v-if="toDisplayBook" 
+      ref="bookDisplay" 
+      :book="currentBook"
+      v-on:currentBookId="listenToCurrentBook"
+    ></book-display>
   </div>
 </template>
 
@@ -92,6 +96,11 @@ export default {
       // this.$refs.bookDisplay.item = this.books[bookId]
       console.log('当前 book:', this.books[bookId])
       this.currentBook = this.books[bookId]
+    },
+    listenToCurrentBook (currentBookId) {
+      // 监听子组件传值
+      this.currentBook = this.books[currentBookId]
+      console.log('[子组件] 当前 book:', this.currentBook)
     }
   }
 }

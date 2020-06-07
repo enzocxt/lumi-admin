@@ -1,9 +1,9 @@
 <template>
   <div id="id-book-display">
     <div class="prev-next">
-      <a class="prev-book">上一本</a>
+      <a class="prev-book" @click="gotoPrev()">上一本</a>
       <a> / </a>
-      <a class="next-book">下一本</a>
+      <a class="next-book" @click="gotoNext()">下一本</a>
     </div>
     <div id="id-book-content">
       <el-carousel id="id-book-slideshow" class="pointer" 
@@ -69,7 +69,9 @@ export default {
   },
   watch: {
     book: function () {
+      // 监听父组件更新传递数据，重新加载图片
       console.log("当前图书:", this.book)
+      this.loadImages()
     }
   },
   mounted () {
@@ -90,6 +92,13 @@ export default {
           console.log('book imgs:', _this.imgs)
         }
       })
+    },
+    gotoPrev () {
+      console.log('goto:', this.book.id - 1)
+      this.$emit('currentBookId', this.book.id - 1)
+    },
+    gotoNext () {
+
     }
   }
 }
