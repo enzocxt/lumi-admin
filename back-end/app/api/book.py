@@ -1,3 +1,4 @@
+import os
 from flask import (
     request,
     url_for,
@@ -39,6 +40,21 @@ def get_books():
 def get_book(id):
     """返回一本图书"""
     response = jsonify(Book.query.get_or_404(id).to_dict())
+    return response
+
+
+@bp.route('/book/<string:abbr>/imgs', methods=['GET'])
+def get_book_imgs(abbr):
+    """返回一本图书的所有图片（不包括封面）"""
+    # 从所有图书文件夹中找到图书缩写 abbr 对应的图书文件夹
+    # 然后从该文件夹中取出所有图片的文件名（不包括封面图片）
+    apidir = "http://localhost:8088/api/file"
+    basedir = "D:/Workspace/luminocity/img"
+    bookdir = f'{basedir}/{abbr}'
+    fnames = os.listdir(bookdir)
+    fnames = [fn for fn in fnames if fn.endswith('.jpg')]
+    fnames = [f'{apidir}/{abbr}/{fn}' for fn in fnames[1:]]
+    response = jsonify(fnames)
     return response
 
 

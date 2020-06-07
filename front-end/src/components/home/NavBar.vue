@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     setNavBar () {
-      console.log(this.showNavBar)
       this.showNavBar = !this.showNavBar
     }
   }

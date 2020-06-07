@@ -12,8 +12,8 @@
         indicator-position="none"
         arrow="never"
       >
-        <el-carousel-item v-for="item in pages" :key="item.id">
-          <img :src="item.img" alt="">
+        <el-carousel-item v-for="item in imgs" :key="item">
+          <img :src="item" alt="">
         </el-carousel-item>
       </el-carousel>
       <!-- </div> -->
@@ -74,16 +74,17 @@ export default {
     }
   },
   mounted () {
+    this.loadImages()
   },
   methods: {
     handleExtend () {
       this.toExtend = !this.toExtend
     },
     loadImages () {
-      // api[GET]: /api/book/<int:id>/imgs
+      // api[GET]: /api/book/{abbr}/imgs
       // 从后端获得所有图书封面
       let _this = this
-      _this.$axios.get(`/book/${this.book.id}/imgs`).then(resp => {
+      _this.$axios.get(`/book/${this.book.abbr}/imgs`).then(resp => {
         console.log('book img response:', resp)
         if (resp && resp.status === 200) {
           _this.imgs = resp.data
