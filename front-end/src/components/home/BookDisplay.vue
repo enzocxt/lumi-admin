@@ -23,12 +23,12 @@
             <div class='book-name'>
               <p>{{ item.name }}</p>
             </div>
-            <div class='extend'>
-              <a href='#'>展开介绍</a>
+            <div class='extend' @click="handleExtend()">
+              <a>展开介绍</a>
             </div>
           </div>
         </div>
-        <div class="detail">
+        <div class="detail" v-if="toExtend">
           <div class="book-info">
             <p>
               {{ item.author }}
@@ -65,6 +65,7 @@ export default {
   data () {
     return {
       pages: [],
+      toExtend: false,
     }
   },
   watch: {
@@ -75,6 +76,9 @@ export default {
   mounted () {
   },
   methods: {
+    handleExtend () {
+      this.toExtend = !this.toExtend
+    }
   }
 }
 </script>
@@ -86,141 +90,128 @@ export default {
 }
 
 div.prev-next {
-    position: relative;
-    float: right;
-    margin-right: 20px;
-    height: 22.5px;
+  position: relative;
+  float: right;
+  margin-right: 20px;
+  height: 22.5px;
 }
 
 .prev-next a:link {
-    color:#807f80;
-    text-decoration:none;
+  color:#807f80;
+  text-decoration:none;
 }
 .prev-next a:visited {
-    color:#807f80;
-    text-decoration:none;
+  color:#807f80;
+  text-decoration:none;
 }
 .prev-next a:hover {
-    cursor: pointer;
-    color:white;
+  cursor: pointer;
+  color:white;
 }
 
 .prev-next a {
-    position: relative;
-    font-family:"source-han-sans-simplified-c","Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    font-size: 11px;
-    letter-spacing:2px
+  position: relative;
+  font-family:"source-han-sans-simplified-c","Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 11px;
+  letter-spacing:2px
 }
 
 
 #id-book-slideshow {
-    position: relative;
-    /*padding-top: 67.5px;*/
-    overflow: hidden;
-    width: 840px;
-    height: 540px;
+  position: relative;
+  /*padding-top: 67.5px;*/
+  overflow: hidden;
+  width: 840px;
+  height: 540px;
 }
-
 #id-book-slideshow img {
-    position: absolute;  /* 这里改成relative会造成fadeOut()执行后页面跳动问题 */
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: none;
+  position: absolute;  /* 这里改成relative会造成fadeOut()执行后页面跳动问题 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: none;
 }
-
 #id-book-slideshow img:first-child {
-    display: block;
+  display: block;
 }
 
 /* book brief info */
 .brief {
-    position: relative;
-    overflow: hidden;
-    width: 840px;
-    /*height: 67.5px;*/
-    padding-bottom: 22.5px;
+  position: relative;
+  overflow: hidden;
+  width: 840px;
+  /*height: 67.5px;*/
+  padding-bottom: 22.5px;
 }
-
 .brief-wrapper {
-    position: relative;
-    padding-top: 6.25px;
-    overflow: hidden;
+  position: relative;
+  padding-top: 6.25px;
+  overflow: hidden;
 }
-
 .author {
-    position: relative;
-    width: 290px;
-    float: left;
+  position: relative;
+  width: 290px;
+  float: left;
 }
-
 div.author p {
-    font-family: "FangSong", sans-serif;
-    font-size: 12px;
-    line-height: 22.5px;
-    letter-spacing:2px;
+  font-family: "FangSong", sans-serif;
+  font-size: 12px;
+  line-height: 22.5px;
+  letter-spacing:2px;
 }
-
 .book-name {
-    position: relative;
-    width: 430px;
-    float: left;
-    padding-left: 290px;
+  position: relative;
+  width: 430px;
+  float: left;
+  padding-left: 290px;
 }
-
 div.book-name p {
-    font-family: "Noto Sans TC", sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 22.5px;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 22.5px;
 }
 
 .extend {
-    position: relative;
-    float: right;
-    width: 60px;
+  position: relative;
+  float: right;
+  width: 60px;
 }
-
 div.extend a {
-    float: right;
+  float: right;
 
-    font-family: "Noto Sans TC", sans-serif;
-    font-size: 12px;
-    text-decoration: none;
-    color: #000000;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+  color: #000000;
 }
 
 /* book details */
 .detail {
-    position: relative;
-    display: none;
-
-    width: 840px;
-    height: auto;
-    overflow: hidden;
+  position: relative;
+  /* display: none; */
+  width: 840px;
+  height: auto;
+  overflow: hidden;
 }
-
 .book-info {
-    position: relative;
-    width: 290px;
-    float: left;
+  position: relative;
+  width: 290px;
+  float: left;
 }
-
 div.book-info p {
-    font-family: "FangSong", sans-serif;
-    font-size: 12px;
-    line-height: 22.5px
+  font-family: "FangSong", sans-serif;
+  font-size: 12px;
+  line-height: 22.5px
 }
-
 .abstract {
-    position: relative;
-    width: 550px;
-    float: left;
+  position: relative;
+  width: 550px;
+  float: left;
 }
-
 div.abstract p {
-    font-family: "SimSun", sans-serif;
-    font-size: 12px;
-    line-height: 22.5px
+  font-family: "SimSun", sans-serif;
+  font-size: 12px;
+  line-height: 22.5px
 }
 </style>
