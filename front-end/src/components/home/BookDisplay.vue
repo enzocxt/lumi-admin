@@ -67,8 +67,12 @@ export default {
       pages: [],
     }
   },
+  watch: {
+    item: function () {
+      console.log("当前图书:", this.item)
+    }
+  },
   mounted () {
-    console.log("当前图书:", this.item)
   },
   methods: {
   }

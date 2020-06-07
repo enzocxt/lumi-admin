@@ -83,8 +83,8 @@ export default {
       return ele * this.proportion + 'px'
     },
     setDisplayBook () {
-      // 设置是否显示 book display 的轮播
-      this.toDisplayBook = !this.toDisplayBook
+      // 点击图书封面后，将 toDisplayBook 设置为 true
+      this.toDisplayBook = true
     },
     displayBook (bookId) {
       this.setDisplayBook()
