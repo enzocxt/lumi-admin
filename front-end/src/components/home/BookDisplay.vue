@@ -21,7 +21,7 @@
         <div class='brief'>
           <div class='brief-wrapper'>
             <div class='book-name'>
-              <p>{{ item.name }}</p>
+              <p>{{ book.name }}</p>
             </div>
             <div class='extend' @click="handleExtend()">
               <a>展开介绍</a>
@@ -31,21 +31,21 @@
         <div class="detail" v-if="toExtend">
           <div class="book-info">
             <p>
-              {{ item.author }}
+              {{ book.author }}
               <br>
-              {{ item.publish_date }}出版
+              {{ book.publish_date }}出版
               <br>
-              {{ item.binding_style }} {{ item.size }} cm
+              {{ book.binding_style }} {{ book.size }} cm
               <br>
-              {{ item.num_of_pages }}页 {{ item.num_of_bw_images }}张黑白图片，{{ item.num_of_color_images }}张彩色图片
+              {{ book.num_of_pages }}页 {{ book.num_of_bw_images }}张黑白图片，{{ book.num_of_color_images }}张彩色图片
               <br>
-              ISBN {{ item.ISBN }}
+              ISBN {{ book.ISBN }}
               <br>
-              {{ item.price }}元
+              {{ book.price }}元
             </p>
           </div>
           <div class="abstract">
-            <p>{{ item.abstract }}</p>
+            <p>{{ book.abstract }}</p>
           </div>
         </div>
       </div>
@@ -60,17 +60,17 @@ export default {
   name: 'BookDisplay',
   components: {},
   props: {
-    item: Object,
+    book: Object,
   },
   data () {
     return {
-      pages: [],
+      imgs: [],
       toExtend: false,
     }
   },
   watch: {
-    item: function () {
-      console.log("当前图书:", this.item)
+    book: function () {
+      console.log("当前图书:", this.book)
     }
   },
   mounted () {
@@ -78,6 +78,18 @@ export default {
   methods: {
     handleExtend () {
       this.toExtend = !this.toExtend
+    },
+    loadImages () {
+      // api[GET]: /api/book/<int:id>/imgs
+      // 从后端获得所有图书封面
+      let _this = this
+      _this.$axios.get(`/book/${this.book.id}/imgs`).then(resp => {
+        console.log('book img response:', resp)
+        if (resp && resp.status === 200) {
+          _this.imgs = resp.data
+          console.log('book imgs:', _this.imgs)
+        }
+      })
     }
   }
 }

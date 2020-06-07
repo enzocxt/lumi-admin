@@ -16,7 +16,7 @@
       </div>
 		</div>
     <!-- v-if 和 v-show 的区别 -->
-    <book-display v-if="toDisplayBook" ref="bookDisplay" :item="currentBook"></book-display>
+    <book-display v-if="toDisplayBook" ref="bookDisplay" :book="currentBook"></book-display>
   </div>
 </template>
 
