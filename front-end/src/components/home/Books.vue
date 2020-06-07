@@ -15,7 +15,8 @@
         </a>
       </div>
 		</div>
-    <book-display v-if="toDisplayBook" ref="bookDisplay"></book-display>
+    <!-- v-if 和 v-show 的区别 -->
+    <book-display v-if="toDisplayBook" ref="bookDisplay" :item="currentBook"></book-display>
   </div>
 </template>
 
@@ -24,12 +25,15 @@ import BookDisplay from './BookDisplay.vue'
 
 export default {
   name: 'Books',
-  components: {},
+  components: {
+    BookDisplay
+  },
   data () {
     return {
       proportion: 0.25,
       books: [],
       toDisplayBook: false,
+      currentBook: {},
     }
   },
   mounted () {
@@ -79,11 +83,15 @@ export default {
       return ele * this.proportion + 'px'
     },
     setDisplayBook () {
+      // 设置是否显示 book display 的轮播
       this.toDisplayBook = !this.toDisplayBook
     },
     displayBook (bookId) {
-      this.$refs.bookDisplay.book = this.books[bookId]
       this.setDisplayBook()
+      console.log('当前 book id:', bookId)
+      // this.$refs.bookDisplay.item = this.books[bookId]
+      console.log('当前 book:', this.books[bookId])
+      this.currentBook = this.books[bookId]
     }
   }
 }

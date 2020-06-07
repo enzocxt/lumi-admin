@@ -59,13 +59,16 @@ import BookDisplay from './BookDisplay.vue'
 export default {
   name: 'BookDisplay',
   components: {},
+  props: {
+    item: Object,
+  },
   data () {
     return {
       pages: [],
-      book: {}
     }
   },
   mounted () {
+    console.log("当前图书:", this.item)
   },
   methods: {
   }

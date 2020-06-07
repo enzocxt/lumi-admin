@@ -61,9 +61,9 @@ html {
   position: relative;
 }
 body, html {
-	/* width:100%; */
   min-width: 1280px;
-	/*height:100%;*/
+	/* width: 100%; */
+	/* height: 100%; */
 }
 body {
   height: 100%;
@@ -82,6 +82,7 @@ body {
 .cls-hide {
   display: none;
 }
+/* 分隔块 */
 .separator {
   display: block;
   position: relative;
