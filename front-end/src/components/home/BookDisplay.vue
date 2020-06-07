@@ -2,11 +2,10 @@
   <div id="id-book-display">
     <div class="prev-next">
       <a class="prev-book">上一本</a>
-      <a></a>
+      <a> / </a>
       <a class="next-book">下一本</a>
     </div>
     <div id="id-book-content">
-      <!-- <div id="id-book-slideshow" class="pointer"> -->
       <el-carousel id="id-book-slideshow" class="pointer" 
         :interval="3000" 
         indicator-position="none"
@@ -16,7 +15,7 @@
           <img :src="item" alt="">
         </el-carousel-item>
       </el-carousel>
-      <!-- </div> -->
+      
       <div id="id-book-description">
         <div class='brief'>
           <div class='brief-wrapper'>
@@ -24,7 +23,7 @@
               <p>{{ book.name }}</p>
             </div>
             <div class='extend' @click="handleExtend()">
-              <a>展开介绍</a>
+              <a :href="'#/'+book.abbr">展开介绍</a>
             </div>
           </div>
         </div>
