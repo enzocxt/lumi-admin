@@ -99,6 +99,7 @@ export default {
     },
     listenToCurrentBook (currentBookId) {
       // 监听子组件传值
+      currentBookId = currentBookId % this.books.length
       this.currentBook = this.books[currentBookId]
       console.log('[子组件] 当前 book:', this.currentBook)
     }

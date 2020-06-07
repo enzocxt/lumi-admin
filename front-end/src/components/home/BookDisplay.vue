@@ -98,7 +98,8 @@ export default {
       this.$emit('currentBookId', this.book.id - 1)
     },
     gotoNext () {
-
+      console.log('goto:', this.book.id - 1)
+      this.$emit('currentBookId', this.book.id + 1)
     }
   }
 }
