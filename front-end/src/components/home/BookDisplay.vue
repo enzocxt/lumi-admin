@@ -108,7 +108,6 @@ div.prev-next {
   margin-right: 20px;
   height: 22.5px;
 }
-
 .prev-next a:link {
   color:#807f80;
   text-decoration:none;
@@ -121,7 +120,6 @@ div.prev-next {
   cursor: pointer;
   color:white;
 }
-
 .prev-next a {
   position: relative;
   font-family:"source-han-sans-simplified-c","Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -137,12 +135,16 @@ div.prev-next {
   width: 840px;
   height: 540px;
 }
+.el-carousel__item {
+  height: 540px;
+}
 #id-book-slideshow img {
   position: absolute;  /* 这里改成relative会造成fadeOut()执行后页面跳动问题 */
   top: 0;
   left: 0;
   width: 100%;
-  display: none;
+  height: 100%;
+  /* display: none; */
 }
 #id-book-slideshow img:first-child {
   display: block;
